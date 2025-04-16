@@ -51,14 +51,22 @@ def img():
         print(f"Image file saved to {image_file_path}")
 
         # Return a proper JSON response
-        response = ollama.generate(
-            model='qnguyen3/nanollava',
-            prompt='what is in image',
-            images=[open(r'C:\Users\Tanish\Desktop\pythonProject1\VisionAid2\uploads\photo.jpg', "rb").read()],
+        with open(r'C:\Users\Tanish\Desktop\pythonProject1\VisionAid2\uploads\photo.jpg', "rb") as f:
+            img_data = f.read()
+        response = ollama.chat(
+            model='moondream:v2',
+            messages=[
+                {
+                    'role': 'user',
+                    'content': 'what is in this image?',
+                    'images': [img_data]
+                }
+            ]
         )
 
-        ans = response["response"].strip()
+        ans = response['message']['content'].strip()
         print(ans)
+
         return jsonify({"message": ans})
 
 
