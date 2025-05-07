@@ -61,7 +61,23 @@ Vision Aid is an intelligent mobile application designed to assist visually impa
 ![Sample Input Image](images/1.png)
 
 ### Sample Output (LLM Response)
-Audio response: "This image contains a plate of fruits including an apple, a banana, and grapes."
+Audio response: "The image depicts a large group of people gathered outdoors on a grassy field. There are at least 15 individuals spread across the scene, some sitting and others standing or walking around. A few bicycles can be seen among them as well. The atmosphere appears to be relaxed and social, with everyone enjoying their time together in the park."
+
+### Sample Input (Image)
+![Sample Input Image](images/2.png)
+
+### Sample Output (LLM Response)
+Audio response: "In the image, a construction worker wearing an orange hard hat and safety vest stands next to a stop sign on a street. The worker holds up a 'Stop' sign above his head as if directing traffic or signaling for caution. Behind him, there are several orange cones placed around the area, likely indicating ongoing work or road closures nearby.
+
+In addition to the construction worker, there is also another person visible in the background who appears to be observing the scene. A truck can be seen parked further back on the street, possibly involved in the construction project as well."
+
+### Sample Input (Image)
+![Sample Input Image](images/3.png)
+
+### Sample Output (LLM Response)
+Audio response: "The image captures a busy city street scene with numerous people walking and crossing the street. A woman wearing a white jacket can be seen carrying a blue backpack, while another person has a handbag. There are also several individuals holding umbrellas, possibly indicating recent rain or drizzle. The street is filled with cars parked along the side of the road, as well as other pedestrians walking in various directions.
+
+The scene takes place on a sidewalk next to a crosswalk where people are crossing the street and going about their day."
 
 ## Contributing
 We welcome contributions! If you would like to contribute to the project, please fork the repository and submit a pull request.
