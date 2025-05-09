@@ -14,9 +14,10 @@ GPIO.setmode(GPIO.BCM)  # Use BCM numbering
 GPIO.setup(4, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 
-
-subprocess.run(['bluetoothctl', 'connect', 'AB:02:82:48:76:ED'])
-time.sleep(2)
+#button L[4],L[-1]
+#dac Vin:R[1], Gnd:R[3], Gain:R[-4], LRCL:L[-3], BCL:R[6], DIN:R[-1]
+# subprocess.run(['bluetoothctl', 'connect', 'AB:02:82:48:76:ED'])
+# time.sleep(2)
 subprocess.run(['espeak', '-w', 'output.wav', f'"AUDIO DEVICE CONNECTED SUCCESFULLY"'])
 subprocess.run(['aplay', 'output.wav'])
 
@@ -29,7 +30,6 @@ subprocess.run(['espeak', '-w', 'output.wav', f'"CAMERA INITIALISED SUCCESFULLY"
 subprocess.run(['aplay', 'output.wav'])
 # Initialize for Moondream Cloud - ethereal-shark-633
 model = md.vl(api_key="")
-
 subprocess.run(['espeak', '-w', 'output.wav', f'"AI MODEL INITIALISED SUCCESFULLY"'])
 subprocess.run(['aplay', 'output.wav'])
 # OpenCV VideoCapture setup
