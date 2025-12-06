@@ -1,0 +1,92 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.ArrayList;
+public class Whiteboard extends JFrame {
+ private ArrayList<Point> points = new ArrayList<>();
+ private ArrayList<Color> colors = new ArrayList<>();
+ private ArrayList<Integer> sizes = new ArrayList<>();
+ private Color currentColor = Color.BLACK;
+ private int brushSize = 5;
+ public Whiteboard() {
+ setTitle("Whiteboard in Java");
+ setSize(800, 600);
+ setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+ DrawingPanel panel = new DrawingPanel();
+ add(panel, BorderLayout.CENTER);
+ JPanel tools = new JPanel();
+ tools.setLayout(new FlowLayout());
+ // --- COLOR BUTTONS ---
+ tools.add(createColorButton("Black", Color.BLACK));
+ tools.add(createColorButton("Red", Color.RED));
+ tools.add(createColorButton("Blue", Color.BLUE));
+ tools.add(createColorButton("Green", Color.GREEN));
+ tools.add(createColorButton("Yellow", Color.YELLOW));
+ tools.add(createColorButton("Orange", Color.ORANGE));
+ tools.add(createColorButton("Pink", Color.PINK));
+ // --- ERASER BUTTON ---
+ JButton eraserBtn = new JButton("Eraser");
+ eraserBtn.addActionListener(e -> currentColor = Color.WHITE);
+ tools.add(eraserBtn);
+ // Brush size
+ JLabel sizeLabel = new JLabel("Brush Size:");
+ tools.add(sizeLabel);
+ String[] sizesList = {"3", "5", "8", "12", "20", "30"};
+ JComboBox<String> sizeBox = new JComboBox<>(sizesList);
+ sizeBox.addActionListener(e ->
+ brushSize = Integer.parseInt((String) sizeBox.getSelectedItem())
+ );
+ tools.add(sizeBox);
+ // Clear Button
+ JButton clearBtn = new JButton("Clear");
+ clearBtn.addActionListener(e -> {
+ points.clear();
+ colors.clear();
+ sizes.clear();
+ panel.repaint();
+ });
+ tools.add(clearBtn);
+ add(tools, BorderLayout.NORTH);
+ setVisible(true);
+ }
+ // Helper method to create color buttons easily
+ private JButton createColorButton(String name, Color color) {
+ JButton btn = new JButton(name);
+ btn.addActionListener(e -> currentColor = color);
+ return btn;
+ }
+ class DrawingPanel extends JPanel {
+ public DrawingPanel() {
+ setBackground(Color.WHITE);
+ addMouseMotionListener(new MouseMotionAdapter() {
+ public void mouseDragged(MouseEvent e) {
+ points.add(e.getPoint());
+ colors.add(currentColor);
+ sizes.add(brushSize);
+ repaint();
+ }
+ });
+ addMouseListener(new MouseAdapter() {
+ public void mousePressed(MouseEvent e) {
+ points.add(e.getPoint());
+ colors.add(currentColor);
+ sizes.add(brushSize);
+ repaint();
+ }
+ });
+ }
+ @Override
+ protected void paintComponent(Graphics g) {
+     super.paintComponent(g);
+ for (int i = 0; i < points.size(); i++) {
+ g.setColor(colors.get(i));
+ int size = sizes.get(i);
+ Point p = points.get(i);
+ g.fillOval(p.x, p.y, size, size);
+ }
+ }
+ }
+ public static void main(String[] args) {
+ SwingUtilities.invokeLater(() -> new Whiteboard());
+ }
+}
